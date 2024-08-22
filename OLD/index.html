@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>IM Template Generator</title>
+</head>
+
+<body>
+    <div class="card">
+        <div class="card-title"><h3>IM Template Generator</h3></div>
+        <div class="input-container">
+            <div class="input-holder">
+                <label for="input-carrier">Router: </label>
+                <input class="text-in" type="text" name="input-router" id="input-router">
+            </div>
+            <div class="input-holder">
+                <label for="input-carrier">Carrier: </label>
+                <input class="text-in" type="text" name="input-carrier" id="input-carrier">
+            </div>
+            <div class="input-holder">
+                <label for="input-cctid">CCTID: </label>
+                <input class="text-in" type="text" name="input-cctid" id="input-cctid">
+            </div>
+
+        </div>
+
+        <div class="input-container">
+            <div class="input-holder">
+                <label for="input-carrier-ticket">Carrier Ticket: </label>
+                <input class="text-in" type="text" name="input-carrier-ticket" id="input-carrier-ticket">
+            </div>
+            <div class="input-holder">
+                <label for="input-contact-name">Contact Name: </label>
+                <input class="text-in" type="text" name="input-contact-name" id="input-contact-name">
+            </div>
+            <div class="input-holder">
+                <label for="input-contact-number">Contact Number: </label>
+                <input class="text-in" type="text" name="input-contact-number" id="input-contact-number">
+            </div>
+
+
+        </div>
+
+        <div class="input-container">
+            <div class="input-holder">
+                <label for="input-orange-ticket">Orange Case: </label>
+                <input class="text-in" type="text" name="input-orange-case" id="input-orange-case">
+            </div>
+            <div class="input-holder">
+                <label for="input-status">Status: </label>
+                <input placeholder="Down, Flap,Packet loss, RFO" class="text-in" type="text" name="input-status" id="input-status">
+            </div>
+            <div class="input-container">
+                <div class="input-holder">
+                    <label for="input-location">Location: </label>
+                    <input class="text-in" type="text" name="input-location" id="input-location">
+                </div>
+            </div>
+        </div>
+
+        <div class="input-container">
+            <div class="input-holder">
+                <label for="input-customer">Customer: </label>
+                <input class="text-in" type="text" name="input-customer" id="input-customer">
+            </div>
+            <div class="input-holder">
+                <label for="input-adress">Address: </label>
+                <input class="text-in" type="text" name="input-Address" id="input-address">
+            </div>
+        </div>
+
+        <div class="input-contanier">
+            <button id="generate" type="button" onclick="generate()">Generate</button>
+			<button id="clean" type="button" onclick="clean()">Clean</button>
+        </div>
+
+    </div>
+
+    <div class="card">
+        <div class="card-title"><h3>Results</h3></div>
+        <div class="text-area-holder">
+            <textarea style="border-radius: 4px;" name="results" id="text-results" cols="110" rows="110"></textarea>
+        </div>
+    </div>
+
+</body>
+
+</html>

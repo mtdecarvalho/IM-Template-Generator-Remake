@@ -1,0 +1,214 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+/* Estilo da navbar */
+
+nav{
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 8vh;
+    background-color: rgb(6, 6, 131);
+    color: white;
+}
+
+.navBtns{
+    display: flex;
+    justify-content: space-around;
+    width: 30%;
+}
+
+.navBtns li{
+    list-style: none;
+}
+
+.navBtns a{
+    color: white;
+    text-decoration: none;
+    letter-spacing: 3px;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 14px 16px;
+}
+
+.dropitem{
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.navBtns li a:hover:not(.active){
+    background-color: lightskyblue;
+}
+
+.dropbtn button:hover:not(.active){
+    background-color: lightskyblue;
+}
+
+.navBtns li a.onpage{
+    background-color: rgb(18, 120, 214);
+}
+
+
+
+.logotop{
+    letter-spacing: 10px;
+    font-family: 'Gemunu Libre', sans-serif;
+}
+
+.logobottom{
+    font-family: 'Gemunu Libre', sans-serif;
+    font-size: 14pt;
+    display: flex;
+    padding-left: 45%;
+}
+
+.logolink{
+    color: white;
+    text-decoration: none;
+}
+
+/* --------------------------------------------------- */
+
+body{
+    background-color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/*CSS INDEX*/
+
+/* Estilos do Body*/
+
+
+
+/*CSS do Slider*/
+
+.slide-container{
+    margin-left: 10%;
+    margin-top: 20px;
+    margin-right: 10%;
+   
+}
+
+/*CSS dos Cards*/
+.card{
+    
+    background-color: orange;
+    margin-top: 20px;
+    border-radius: 4px;
+    margin-left: 2%;
+    margin-right: 5px;
+    padding: 20px 20px 20px 20px;
+    margin-bottom: 15px;
+}
+
+.input-container{
+    display: flex;
+}
+
+#generate{
+    margin-top: 10px;
+    margin-left: 10px;
+	padding: 10px;
+}
+
+#clean{
+	float: right;
+	margin-right: 10px;
+	padding: 10px;
+	margin-top: 10px;
+}
+
+.card-title{
+    margin-bottom: 10px;
+}
+
+.card-table .left-side{
+    vertical-align: top;
+    padding-left: 20px;
+}
+
+.input-holder{
+    margin: 10px;
+}
+
+.input-holder input{
+    border-radius: 5px;
+}
+
+
+
+.imagem{
+    border-radius: 5px;
+    align-items: center;
+}
+ 
+#perfil-img{
+    border-radius: 200px;
+}
+
+#bruno-title{
+    float: right;
+}
+
+
+/*CSS do footer*/
+.page-footer{
+    margin-top: 20px;
+    background-color: rgb(6, 6, 131);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+.page-footer div{
+   
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* --------------------------------------------------- */
+
+/*CSS AVISOS*/
+
+.container-avisos{
+    margin-top: 20px;
+}
+
+.avisos-title{
+    color: white;
+}
+
+
+
+.mini-card{
+    background-color: rgb(6, 6, 131);
+    border-radius: 10px;
+    padding: 4px;
+}
+
+.mini-card a{
+    text-decoration: none;
+    margin: 70px;
+    color: white;
+}
+
+.mini-card p{
+    margin: 70px;
+    text-decoration: none;
+    color: white;
+}
+
+/*-------------------------------------------*/
+
+/*Content CSS*/
+.horario{
+    margin: 50px;
+}
+
+
+

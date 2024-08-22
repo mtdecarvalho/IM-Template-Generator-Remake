@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <title>IM Template Generator Remake</title>
+    
+</head>
+<body>
+    <div class="input-card">
+        <div class="input-card-title"><h3>IM Template Generator REMAKE</h3></div>
+        <div class="input-container">
+            <div class="input-holder">
+                <label for="input-router">Router:</label>
+                <input type="text" id="input-router">
+            </div>
+            <div class="input-holder">
+                <label for="input-carrier">Carrier:</label>
+                <input type="text" id="input-carrier">
+            </div>
+            <div class="input-holder">
+                <label for="input-cctid">CCTID:</label>
+                <input type="text" id="input-cctid">
+            </div>
+        </div>
+        <div class="input-container">
+            <div class="input-holder">
+                <label for="input-carriertkt">Carrier's Ticket:</label>
+                <input type="text" id="input-carriertkt">
+            </div>
+            <div class="input-holder">
+                <label for="input-contactname">Contact Name:</label>
+                <input type="text" id="input-contactname">
+            </div>
+            <div class="input-holder">
+                <label for="input-contactnumber">Contact Number:</label>
+                <input type="text" id="input-contactnumber">
+            </div>
+        </div>
+        <div class="input-container">
+            <div class="input-holder">
+                <label for="input-orangetkt">Orange Case:</label>
+                <input type="text" id="input-orangetkt">
+            </div>
+            <div class="input-holder">
+                <label for="input-status">Status:</label>
+                <input type="text" id="input-status">
+            </div>
+            <div class="input-holder">
+                <label for="input-location">Location:</label>
+                <input type="text" id="input-location">
+            </div>
+        </div>
+        <div class="input-container">
+            <div class="input-holder">
+                <label for="input-customer">Customer:</label>
+                <input type="text" id="input-customer">
+            </div>
+            <div class="input-holder">
+                <label for="input-address">Address:</label>
+                <input type="text" id="input-address">
+            </div>
+            <div class="input-holder">
+                <label for="input-destemails">Carrier's Destination Email(s):</label>
+                <input type="text" id="input-destemails">
+            </div>
+        </div>
+        <div class="input-buttons-container">
+            <button id="generate-templates" onclick="generateTemplates()">Generate Templates</button>
+            <button id="clean-templates" onclick="cleanTemplates()">Clean Templates</button>
+            <button id="generate-email" onclick="generateEmail()">Generate Email</button>
+        </div>
+    </div>
+    <div class="results-card">
+        <div class="results-card-title"><h3>Results:</h3></div>
+        <div class="results-holder">
+            <div class="first-telco-label">
+                <p>
+                    <strong>First Telco Referral:</strong>
+                    <button id="copy-first-telco" onclick="copyToClipboard('first-telco-text')"> Click to Copy</button>
+                </p>
+            </div>
+            <textarea name="first-telco-area" id="first-telco-text" class="results-text"></textarea>
+        </div>
+        <div class="results-holder">
+            <div class="telco-status-label">
+                <p>
+                    <strong>Telco Status:</strong>
+                    <button id="copy-telco-status" onclick="copyToClipboard('telco-status-text')"> Click to Copy</button>
+                </p>
+            </div>
+            <textarea name="telco-status-area" id="telco-status-text" class="results-text"></textarea>
+        </div>
+        <div class="results-holder">
+            <div class="osp-template-label">
+                <p>
+                    <strong>OSP Activation Template:</strong>
+                    <button id="copy-osp-template" onclick="copyToClipboard('osp-template-text')"> Click to Copy</button>
+                </p>
+            </div>
+            <textarea name="osp-template-area" id="osp-template-text" class="results-text"></textarea>
+        </div>
+        <div class="results-holder">
+            <div class="email-subject-label">
+                <p>
+                    <strong>Email Subject:</strong>
+                    <button id="copy-email-subject" onclick="copyToClipboard('email-subject-text')"> Click to Copy</button>
+                </p>
+            </div>
+            <textarea name="email-subject-area" id="email-subject-text" class="results-text"></textarea>
+        </div>
+        <div class="results-holder">
+            <div class="ptbr-email-label">
+                <p>
+                    <strong>Portuguese Email:</strong>
+                    <button id="ptbr-email-subject" onclick="copyToClipboard('ptbr-email-text')"> Click to Copy</button>
+                </p>
+            </div>
+            <textarea name="ptbr-email-area" id="ptbr-email-text" class="results-text"></textarea>
+        </div>
+        <div class="results-holder">
+            <div class="esp-email-label">
+                <p>
+                    <strong>Spanish Email:</strong>
+                    <button id="esp-email-subject" onclick="copyToClipboard('esp-email-text')"> Click to Copy</button>
+                </p>
+            </div>
+            <textarea name="esp-email-area" id="esp-email-text" class="results-text"></textarea>
+        </div>
+        <div class="results-holder">
+            <div class="eng-email-label">
+                <p>
+                    <strong>English Email:</strong>
+                    <button id="eng-email-subject" onclick="copyToClipboard('eng-email-text')"> Click to Copy</button>
+                </p>
+            </div>
+            <textarea name="eng-email-area" id="eng-email-text" class="results-text"></textarea>
+        </div>
+        <!-- <div class="results-area-holder">
+            <textarea name="results-area" id="results-text"></textarea>
+        </div> -->
+    </div>
+</body>
+</html>
