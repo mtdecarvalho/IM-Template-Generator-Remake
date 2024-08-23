@@ -194,18 +194,13 @@ function sendEmail(lang) {
     let destEmail = document.getElementById('input-destemails').value
     let subject = document.getElementById('email-subject-text').value
     let body = document.getElementById(`${lang}-email-text`).value
-    // () => {
-    //     if (lang === 'ptbr') {
-    //         return document.getElementById('ptbr-email-text').value
-    //     } else if (lang === 'esp') {
-    //         return document.getElementById('esp-email-text').value
-    //     } else return document.getElementById('eng-email-text').value
-    // }
-
     let email = document.createElement('a')
-    email.href = `mailto:${encodeURIComponent(destEmail)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    email.click()
-    // Essa função vai abrir uma nova janela com o template de email e email de destino informados já preenchido no outlook.
+    if (destEmail && subject && body) {
+        email.href = `mailto:${encodeURIComponent(destEmail)}?subject=${encodeURIComponent(subject)}&cc=rio.im@orange.com&body=${encodeURIComponent(body)}`
+        email.click()
+    } else {
+        alert('Please generate the templates AND add a destination email address.')
+    }
 }
 
 function cleanTemplates() {
@@ -219,6 +214,7 @@ function cleanTemplates() {
 function copyToClipboard(text) {
     // Essa função recebe uma string de texto que corresponde a textarea que é pra ser copiada
     // envia essa string como parametro pra localizar a textarea pelo getElementById, seleciona-o e copia ele pra clipboard.
-    document.getElementById(text).select();
-    document.execCommand('copy');
+    document.getElementById(text).select()
+    document.execCommand('copy')
+    document.getSelection().removeAllRanges()
 }
