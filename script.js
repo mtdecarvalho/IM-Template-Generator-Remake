@@ -27,7 +27,7 @@ function generateTime(status) {
     let hour = currentDate.getUTCHours()
     let minute = currentDate.getUTCMinutes()
 
-    if (status.toLowerCase() === 'down' || status.toLowerCase() === 'flap' || status.toLowerCase() === 'packet loss') {
+    if (status.toLowerCase() === 'down' || status.toLowerCase() === 'flap'|| status.toLowerCase() === 'packet loss') {
         hour += 1
     } else if (status.toLowerCase() === 'rfo') {
         hour += 3
@@ -35,7 +35,7 @@ function generateTime(status) {
         hour += 2
     }
 
-    return `${hour}:${minute}z`
+    return `${addLeadingZero(hour)}:${addLeadingZero(minute)}z`
 }
 
 function generateTicketDescription(status, router, carrier) {
@@ -77,63 +77,54 @@ Se o status não for down, flap ou packet loss, vai retornar "foi afetado", já 
 */
 
 function generateEmailStatusPtbr(status) {
-    if (status.toLowerCase() == 'down') {
-        return 'se encontra caído'
-    } else if (status.toLowerCase() == 'flap') {
-        return 'se encontra intermitente'
-    } else if (status.toLowerCase() == 'packet loss') {
-        return 'está apresentando perda de pacotes'
-    } else {
-        return 'foi afetado'
-    }
+    if (status.toLowerCase() == 'down')             return 'se encontra caído'
+    else if (status.toLowerCase() == 'flap')        return 'se encontra intermitente'
+    else if (status.toLowerCase() == 'packet loss') return 'está apresentando perda de pacotes'
+    else                                            return 'foi afetado'
 }
 
 function generateEmailStatusEng(status) {
-    if (status.toLowerCase() == 'down') {
-        return 'is currently down'
-    } else if (status.toLowerCase() == 'flap') {
-        return 'is currently intermittent'
-    } else if (status.toLowerCase() == 'packet loss') {
-        return 'is currently presenting packet loss'
-    } else {
-        return 'was affected'
-    }
+    if (status.toLowerCase() == 'down')             return 'is currently down'
+    else if (status.toLowerCase() == 'flap')        return 'is currently intermittent'
+    else if (status.toLowerCase() == 'packet loss') return 'is currently presenting packet loss'
+    else                                            return 'was affected'
 }
 
 function generateEmailStatusEsp(status) {
-    if (status.toLowerCase() == 'down') {
-        return 'se encuentra caído'
-    } else if (status.toLowerCase() == 'flap') {
-        return 'se encuentra intermitente.'
-    } else if (status.toLowerCase() == 'packet loss') {
-        return 'está sufriendo pérdida de paquetes.'
-    } else {
-        return 'fue afectado'
-    }
+    if (status.toLowerCase() == 'down')             return 'se encuentra caído'
+    else if (status.toLowerCase() == 'flap')        return 'se encuentra intermitente'
+    else if (status.toLowerCase() == 'packet loss') return 'está sufriendo pérdida de paquetes'
+    else                                            return 'fue afectado'
 }
 
 function translateStatusPtbr(status) {
-    if (status.toLowerCase() === 'down') return 'Caído'
-    else if (status.toLowerCase() === 'flap') return 'Intermitência'
-    else if (status.toLowerCase() === 'packet loss') return 'Perda de pacotes'
-    else if (status.toLowerCase() === 'rfo') return 'Razão da falha (RFO)'
-    else return status
+    if (status.toLowerCase() === 'down')                return 'Caído'
+    else if (status.toLowerCase() === 'flap')           return 'Intermitência'
+    else if (status.toLowerCase() === 'packet loss')    return 'Perda de pacotes'
+    else if (status.toLowerCase() === 'rfo')            return 'Razão da falha (RFO)'
+    else                                                return status
 }
 
 function translateStatusEng(status) {
-    if (status.toLowerCase() === 'down') return 'Down'
-    else if (status.toLowerCase() === 'flap') return 'Intermittency'
-    else if (status.toLowerCase() === 'packet loss') return 'Packet loss'
-    else if (status.toLowerCase() === 'rfo') return 'Reason for Outage (RFO)'
-    else return status
+    if (status.toLowerCase() === 'down')                return 'Down'
+    else if (status.toLowerCase() === 'flap')           return 'Intermittency'
+    else if (status.toLowerCase() === 'packet loss')    return 'Packet loss'
+    else if (status.toLowerCase() === 'rfo')            return 'Reason for Outage (RFO)'
+    else                                                return status
 }
 
 function translateStatusEsp(status) {
-    if (status.toLowerCase() === 'down') return 'Caído'
-    else if (status.toLowerCase() === 'flap') return 'Intermitencia'
-    else if (status.toLowerCase() === 'packet loss') return 'Pérdida de paquetes'
-    else if (status.toLowerCase() === 'rfo') return 'Razón de la falla (RFO)'
-    else return status
+    if (status.toLowerCase() === 'down')                return 'Caído'
+    else if (status.toLowerCase() === 'flap')           return 'Intermitencia'
+    else if (status.toLowerCase() === 'packet loss')    return 'Pérdida de paquetes'
+    else if (status.toLowerCase() === 'rfo')            return 'Razón de la falla (RFO)'
+    else                                                return status
+}
+
+function addRFODowntimeUptime(status, lang) {
+    if (lang === 'ptbr')        return status.toLowerCase() === 'rfo' ? 'Horário de queda: \nHorário de normalização: \n\n' : '\n'
+    else if (lang === 'esp')    return status.toLowerCase() === 'rfo' ? 'Horario de caída: \nHorario de normalización: \n\n' : '\n'
+    else                        return status.toLowerCase() === 'rfo' ? 'Downtime: \nUptime: \n\n' : '\n'
 }
 
 /*
@@ -148,7 +139,8 @@ function generateEmailBodyPtbr(cctid, address, customer, status, orangeTkt) {
             `Endereço: ${address}\n` +
             `Cliente: ${customer}\n` +
             `Descrição da falha: ${translateStatusPtbr(status)}\n` +
-            `Ticket Orange: ${orangeTkt}\n\n` +
+            `Ticket Orange: ${orangeTkt}\n` +
+            addRFODowntimeUptime(status, 'ptbr') +
             `Assim que possuirem alguma atualização sobre este caso, por favor nos informem.\n\n` +
 
             `Agradeço desde já.\n`
@@ -161,7 +153,8 @@ function generateEmailBodyEng(cctid, address, customer, status, orangeTkt) {
             `Address: ${address}\n` +
             `Customer: ${customer}\n` +
             `Failure description: ${translateStatusEng(status)}\n` +
-            `Orange Ticket: ${orangeTkt}\n\n` +
+            `Orange Ticket: ${orangeTkt}\n` + 
+            addRFODowntimeUptime(status, 'eng') +
             `As soon as you have any news on this case, please let us know.\n\n` +
             `Thanks in advance.\n`
 }
@@ -173,7 +166,8 @@ function generateEmailBodyEsp(cctid, address, customer, status, orangeTkt) {
             `Dirección: ${address}\n` +
             `Cliente: ${customer}\n` +
             `Descripción de la falla: ${translateStatusEsp(status)}\n` +
-            `Orange Ticket: ${orangeTkt}\n\n` +
+            `Orange Ticket: ${orangeTkt}\n` + 
+            addRFODowntimeUptime(status, 'esp') +
             `Una vez que tengan alguna actualización para este tema, por favor, háganos saber.\n\n` +
             `Gracias de antemano.\n`
 }

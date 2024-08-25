@@ -1,7 +1,87 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    font-family: Arial;
+}
+
 .input-card {
     background-color: orange;
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    padding: 20px 20px 20px 20px;
+}
+
+.input-card-title {
+    margin-bottom: 20px;
+}
+
+.input-container {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.input-holder {
+    margin-right: 20px;
+}
+
+.template-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.email-buttons-container {
+    display: flex;
+    justify-content: start;
+    margin-top: 10px;
+}
+
+.email-button {
+    margin-right: 20px;
+}
+
+.input-card button {
+    padding: 8px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 13px;
 }
 
 .results-card {
     background-color: orange;
+    margin-top: 5px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    padding: 20px 20px 20px 20px;
+}
+
+.results-card-title {
+    margin-bottom: 20px;
+}
+
+.results-card button {
+    padding: 3px;
+    text-align: center;
+    font-size: 13px;
+}
+
+.text-area-label {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.text-area-label button {
+    margin-left: 50px;
 }
