@@ -6,7 +6,7 @@
 
 body {
     background-color: white;
-    font-family: Arial;
+    font-family: "Noto Sans Hanunoo", sans-serif;
 }
 
 .input-card {
@@ -19,17 +19,21 @@ body {
     padding: 20px 20px 20px 20px;
 }
 
-.input-card-title {
+#input-card-title {
     margin-bottom: 20px;
+    font-size: 18px;
 }
 
 .input-container {
     display: flex;
+    flex-direction: row;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 .input-holder {
+    display: flex;
+    flex-direction: column;
     margin-right: 20px;
 }
 
@@ -46,15 +50,15 @@ body {
     margin-top: 10px;
 }
 
-.email-button {
-    margin-right: 20px;
+.input-card button {
+    padding: 5px;
+    font-family: "Noto Sans Hanunoo", sans-serif;
+    font-size: 14px;
+    border-radius: 5px;
 }
 
-.input-card button {
-    padding: 8px;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 13px;
+.email-button {
+    margin-right: 20px;
 }
 
 .results-card {
@@ -72,9 +76,11 @@ body {
 }
 
 .results-card button {
-    padding: 3px;
+    padding: 2px;
+    border-radius: 5px;
     text-align: center;
-    font-size: 13px;
+    font-family: "Noto Sans Hanunoo", sans-serif;
+    font-size: 12px;
 }
 
 .text-area-label {
@@ -82,6 +88,19 @@ body {
     margin-bottom: 10px;
 }
 
-.text-area-label button {
-    margin-left: 50px;
+.text-area-label p {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.text-area-label p button {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.text-box {
+    font-family: "Noto Sans Hanunoo", sans-serif;
+    border-radius: 5px;
+    border-width: 5%;
 }

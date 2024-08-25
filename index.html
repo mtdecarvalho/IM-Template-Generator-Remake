@@ -7,65 +7,68 @@
     <script src="script.js"></script>
     <title>IM Template Generator Remake</title>
     <link rel="shortcut icon" href="image/favicon.ico" type="image/x-icon">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Noto+Sans+Hanunoo&display=swap');
+    </style>
 </head>
 <body>
     <!-- CARD DE INPUTS -->
     <div class="input-card">
-        <div class="input-card-title"><h3>IM Template Generator Remake</h3></div>
+        <div id="input-card-title"><h3>IM Template Generator Remake</h3></div>
         <div class="input-container">
             <div class="input-holder">
                 <label for="input-router">Router:</label>
-                <input type="text" id="input-router" class="text-box">
+                <input type="text" id="input-router" class="text-box" size="30">
             </div>
             <div class="input-holder">
                 <label for="input-carrier">Carrier:</label>
-                <input type="text" id="input-carrier" class="text-box">
+                <input type="text" id="input-carrier" class="text-box" size="30">
             </div>
             <div class="input-holder">
                 <label for="input-cctid">CCTID:</label>
-                <input type="text" id="input-cctid" class="text-box">
+                <input type="text" id="input-cctid" class="text-box" size="30">
             </div>
         </div>
         <div class="input-container">
             <div class="input-holder">
                 <label for="input-carriertkt">Carrier's Ticket:</label>
-                <input type="text" id="input-carriertkt" class="text-box">
+                <input type="text" id="input-carriertkt" class="text-box" size="30">
             </div>
             <div class="input-holder">
                 <label for="input-contactname">Contact Name:</label>
-                <input type="text" id="input-contactname" class="text-box">
+                <input type="text" id="input-contactname" class="text-box" size="30">
             </div>
             <div class="input-holder">
                 <label for="input-contactnumber">Contact Number:</label>
-                <input type="text" id="input-contactnumber" class="text-box">
+                <input type="text" id="input-contactnumber" class="text-box" size="30">
             </div>
         </div>
         <div class="input-container">
             <div class="input-holder">
                 <label for="input-orangetkt">Orange Case:</label>
-                <input type="text" id="input-orangetkt" class="text-box">
+                <input type="text" id="input-orangetkt" class="text-box" size="30">
             </div>
             <div class="input-holder">
                 <label for="input-status">Status:</label>
-                <input type="text" id="input-status" class="text-box">
+                <input type="text" id="input-status" class="text-box" size="30">
             </div>
             <div class="input-holder">
                 <label for="input-location">Location:</label>
-                <input type="text" id="input-location" class="text-box">
+                <input type="text" id="input-location" class="text-box" size="30">
             </div>
         </div>
         <div class="input-container">
             <div class="input-holder">
                 <label for="input-customer">Customer:</label>
-                <input type="text" id="input-customer" class="text-box">
+                <input type="text" id="input-customer" class="text-box" size="30">
             </div>
             <div class="input-holder">
                 <label for="input-address">Address:</label>
-                <input type="text" id="input-address" class="text-box">
+                <input type="text" id="input-address" class="text-box" size="30">
             </div>
             <div class="input-holder">
                 <label for="input-destemails">Carrier's Destination Email(s):</label>
-                <input type="text" id="input-destemails" class="text-box">
+                <input type="text" id="input-destemails" class="text-box" size="30">
             </div>
         </div>
         <div class="template-buttons-container">
@@ -85,7 +88,7 @@
         <div class="results-holder">
             <div class="text-area-label">
                 <p>
-                    <strong>Description:</strong>
+                    Description
                     <button id="copy-ticket-description" onclick="copyToClipboard('ticket-description-text')"> Click to Copy</button>
                 </p>
             </div>
@@ -94,7 +97,7 @@
         <div class="results-holder">
             <div class="text-area-label">
                 <p>
-                    <strong>First Telco Referral:</strong>
+                    First Telco Referral
                     <button id="copy-first-telco" onclick="copyToClipboard('first-telco-text')"> Click to Copy</button>
                 </p>
             </div>
@@ -103,7 +106,7 @@
         <div class="results-holder">
             <div class="text-area-label">
                 <p>
-                    <strong>Telco Status:</strong>
+                    Telco Status
                     <button id="copy-telco-status" onclick="copyToClipboard('telco-status-text')"> Click to Copy</button>
                 </p>
             </div>
@@ -113,7 +116,7 @@
         <div class="results-holder">
             <div class="osp-template-label">
                 <p>
-                    <strong>OSP Activation Template:</strong>
+                    OSP Activation Template
                     <button id="copy-osp-template" onclick="copyToClipboard('osp-template-text')"> Click to Copy</button>
                 </p>
             </div>
@@ -123,7 +126,7 @@
         <div class="results-holder">
             <div class="text-area-label">
                 <p>
-                    <strong>Email Subject:</strong>
+                    Email Subject
                     <button id="copy-email-subject" onclick="copyToClipboard('email-subject-text')"> Click to Copy</button>
                 </p>
             </div>
@@ -132,7 +135,7 @@
         <div class="results-holder">
             <div class="text-area-label">
                 <p>
-                    <strong>Portuguese Email:</strong>
+                    Portuguese Email
                     <button id="ptbr-email-subject" onclick="copyToClipboard('ptbr-email-text')"> Click to Copy</button>
                 </p>
             </div>
@@ -141,7 +144,7 @@
         <div class="results-holder">
             <div class="text-area-label">
                 <p>
-                    <strong>Spanish Email:</strong>
+                    Spanish Email
                     <button id="esp-email-subject" onclick="copyToClipboard('esp-email-text')"> Click to Copy</button>
                 </p>
             </div>
@@ -150,7 +153,7 @@
         <div class="results-holder">
             <div class="text-area-label">
                 <p>
-                    <strong>English Email:</strong>
+                    English Email
                     <button id="eng-email-subject" onclick="copyToClipboard('eng-email-text')"> Click to Copy</button>
                 </p>
             </div>

@@ -28,11 +28,11 @@ function generateTime(status) {
     let minute = currentDate.getUTCMinutes()
 
     if (status.toLowerCase() === 'down' || status.toLowerCase() === 'flap'|| status.toLowerCase() === 'packet loss') {
-        hour += 1
+        hour = hour + 1 >= 24 ? (hour + 1) - 24 : hour + 1
     } else if (status.toLowerCase() === 'rfo') {
-        hour += 3
+        hour = hour + 3 >= 24 ? (hour + 3) - 24 : hour + 3
     } else {
-        hour += 2
+        hour = hour + 2 >= 24 ? (hour + 2) - 24 : hour + 2
     }
 
     return `${addLeadingZero(hour)}:${addLeadingZero(minute)}z`
