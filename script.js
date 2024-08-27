@@ -1,4 +1,18 @@
 /*
+Essa função recebe uma string que corresponde ao ID do card que é pra ser mostrado na página.
+A função então seleciona todas as divs com a classe card, e esconde uma por uma.
+Depois, a função seleciona a div cujo ID corresponde ao ID passado
+e altera sua visibilidade para que ela seja mostrada na tela.
+*/
+function switchCard (cardID) {
+    let cards = document.querySelectorAll(".card");
+    for (let i = 0; i < cards.length; i++) {
+        cards[i].style.display = 'none'
+    }
+    document.querySelector(`#${cardID.toString()}`).style.display = 'block'
+}
+
+/*
 Essa função recebe um numero, em formato de string, detecta se o seu tamanho é igual a 1.
 Se for igual a 1, retorna a função com um zero a esquerda.
 */
@@ -37,6 +51,10 @@ function generateTime(status) {
 
     return `${addLeadingZero(hour)}:${addLeadingZero(minute)}z`
 }
+
+/*
+Todas as funções abaixo servem para retornar os templates.
+*/
 
 function generateTicketDescription(status, router, carrier) {
     return `${generateDate()} | ${generateTime(status)} | ${router} | ${status.toString().toUpperCase()} | ${carrier}`
@@ -178,18 +196,17 @@ Essa é a função principal do caso, pois é ela que começa toda a geração d
 
 function generateTemplates() {
     // Começo a função populando todas as variáveis com os valores dos campos de input.
-    let router = document.getElementById('input-router').value.toString();
-    let carrier = document.getElementById('input-carrier').value.toString();
-    let cctid = document.getElementById('input-cctid').value.toString();
-    let carrierTkt = document.getElementById('input-carriertkt').value.toString();
-    let contactName = document.getElementById('input-contactname').value.toString();
-    let contactNumber = document.getElementById('input-contactnumber').value.toString();
-    let orangeTkt = document.getElementById('input-orangetkt').value.toString();
-    let status = document.getElementById('input-status').value.toString();
-    let location = document.getElementById('input-location').value.toString();
-    let customer = document.getElementById('input-customer').value.toString();
-    let address = document.getElementById('input-address').value.toString();
-    let destEmails = document.getElementById('input-destemails').value.toString();
+    let router = document.querySelector('#input-router').value.toString();
+    let carrier = document.querySelector('#input-carrier').value.toString();
+    let cctid = document.querySelector('#input-cctid').value.toString();
+    let carrierTkt = document.querySelector('#input-carriertkt').value.toString();
+    let contactName = document.querySelector('#input-contactname').value.toString();
+    let contactNumber = document.querySelector('#input-contactnumber').value.toString();
+    let orangeTkt = document.querySelector('#input-orangetkt').value.toString();
+    let status = document.querySelector('#input-status').value.toString();
+    let location = document.querySelector('#input-location').value.toString();
+    let customer = document.querySelector('#input-customer').value.toString();
+    let address = document.querySelector('#input-address').value.toString();
 
     let ticketDescription = generateTicketDescription(status, router, carrier)
     let firstTelco = generateFirstTelco(carrier, contactName, contactNumber, router, cctid, carrierTkt)
@@ -199,19 +216,55 @@ function generateTemplates() {
     let espEmail = generateEmailBodyEsp(cctid, address, customer, status, orangeTkt)
     let engEmail = generateEmailBodyEng(cctid, address, customer, status, orangeTkt)
 
-    document.getElementById('ticket-description-text').value = ticketDescription
-    document.getElementById('first-telco-text').value = firstTelco
-    document.getElementById('telco-status-text').value = telcoStatus
-    document.getElementById('email-subject-text').value = emailSubject
-    document.getElementById('ptbr-email-text').value = brEmail
-    document.getElementById('esp-email-text').value = espEmail
-    document.getElementById('eng-email-text').value = engEmail
+    document.querySelector('#ticket-description-text').value = ticketDescription
+    document.querySelector('#first-telco-text').value = firstTelco
+    document.querySelector('#telco-status-text').value = telcoStatus
+    document.querySelector('#email-subject-text').value = emailSubject
+    document.querySelector('#ptbr-email-text').value = brEmail
+    document.querySelector('#esp-email-text').value = espEmail
+    document.querySelector('#eng-email-text').value = engEmail
 }
 
+/*
+Essa é a função responsável por gerar os templates OSP e é chamada ao apertar no botão correspondente.
+*/
+
+function generateOSPTemplate() {
+    let serviceType = document.querySelector('#osp-service-type').value
+    let cctid = document.querySelector('#osp-cctid').value
+    let obsPE = document.querySelector('#osp-obs-pe').value 
+    let nvlan = document.querySelector('#osp-nvlan').value
+    let cctSpeed = document.querySelector('#osp-circuit-speed').value
+    let failureTime = document.querySelector('#osp-failure-time').value
+    let status = document.querySelector('#osp-status').value
+    let address = document.querySelector('#osp-address').value
+    let customer = document.querySelector('#osp-customer').value
+    let lcon = document.querySelector('#osp-lcon').value
+    let obsTicket = document.querySelector('#osp-obs-ticket').value
+
+    document.querySelector('#osp-template-text').value = `Tipo de servicio: ${serviceType}\n` +
+    `Número de circuito: ${cctid}\n` +
+    `OBS PE: ${obsPE}\n` +
+    `NVLAN: ${nvlan}\n` +
+    `Velocidad del circuito: ${cctSpeed}\n` +
+    `Fecha/hora del problema: ${failureTime}\n` +
+    `Status del Servicio: ${status}\n` +
+    `Dirección lado remoto (cliente): ${address}\n` +
+    `Cliente: ${customer}\n` +
+    `Contacto: ${lcon}\n` +
+    `OBS ticket: ${obsTicket}\n`
+}
+
+/*
+Essa função pega os emails de destino, o email subject, e o body que corresponde à linguagem informada como parametro.
+Depois, analisa se todos os valores existem (retorna true), e caso sim, gera um mailto: com os parametros informados.
+A função também gera um elemento 'a' que é criado dinamicamente e serve apenas para chamar a função de click e abrir o mailto no cliente de email.
+*/
+
 function sendEmail(lang) {
-    let destEmail = document.getElementById('input-destemails').value
-    let subject = document.getElementById('email-subject-text').value
-    let body = document.getElementById(`${lang}-email-text`).value
+    let destEmail = document.querySelector('#input-destemails').value
+    let subject = document.querySelector('#email-subject-text').value
+    let body = document.querySelector(`#${lang}-email-text`).value
     let email = document.createElement('a')
     if (destEmail && subject && body) {
         email.href = `mailto:${encodeURIComponent(destEmail)}?subject=${encodeURIComponent(subject)}&cc=rio.im@orange.com&body=${encodeURIComponent(body)}`
@@ -221,18 +274,24 @@ function sendEmail(lang) {
     }
 }
 
-function cleanTemplates() {
-    // Essa aplicação pega o HTMLCollection, passa por cada um, e limpa o conteúdo de todos.
-    let results = document.getElementsByClassName('text-box')
+/*
+Essa aplicação pega o HTMLCollection do parametro informado, passa por cada um, e limpa o conteúdo de todos.
+*/
+
+function cleanTemplates(textBoxClass) {
+    let results = document.querySelectorAll(`.${textBoxClass.toString()}`)
     for (let e = 0; e < results.length ; e ++) {
         results[e].value = ''
     }
 }
 
+/*
+Essa função recebe uma string de texto que corresponde a textarea que é pra ser copiada
+envia essa string como parametro pra localizar a textarea pelo getElementById, seleciona-o e copia ele pra clipboard.
+*/
+
 function copyToClipboard(text) {
-    // Essa função recebe uma string de texto que corresponde a textarea que é pra ser copiada
-    // envia essa string como parametro pra localizar a textarea pelo getElementById, seleciona-o e copia ele pra clipboard.
-    document.getElementById(text).select()
+    document.querySelector(`.${text}`).select()
     document.execCommand('copy')
     document.getSelection().removeAllRanges()
 }

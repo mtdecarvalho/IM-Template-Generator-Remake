@@ -12,153 +12,233 @@
     </style>
 </head>
 <body>
-    <!-- CARD DE INPUTS -->
-    <div class="input-card">
-        <div id="input-card-title"><h3>IM Template Generator Remake</h3></div>
-        <div class="input-container">
-            <div class="input-holder">
-                <label for="input-router">Router:</label>
-                <input type="text" id="input-router" class="text-box" size="30">
+    <div id="card-container">
+        <div id="card-tab-buttons">
+            <button id="email-ticket-tab-button" class="card-buttons" onclick="switchCard('email-ticket-card')">Templates Email</button>
+            <button id="osp-tab-button" class="card-buttons" onclick="switchCard('osp-card')">Templates OSP</button>
+        </div>
+
+        <!-- DIV DA TAB DE TEMPLATES NORMAIS -->
+        <div id="email-ticket-card" class="card">
+            <!-- CARD DE INPUTS -->
+            <div class="input-card">
+                <div id="card-title"><h3>IM Template Generator Remake</h3></div>
+                <div class="input-container">
+                    <div class="input-holder">
+                        <label for="input-router">Router:</label>
+                        <input type="text" id="input-router" class="text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="input-carrier">Carrier:</label>
+                        <input type="text" id="input-carrier" class="text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="input-cctid">CCTID:</label>
+                        <input type="text" id="input-cctid" class="text-box" size="30">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-holder">
+                        <label for="input-carriertkt">Carrier's Ticket:</label>
+                        <input type="text" id="input-carriertkt" class="text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="input-contactname">Contact Name:</label>
+                        <input type="text" id="input-contactname" class="text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="input-contactnumber">Contact Number:</label>
+                        <input type="text" id="input-contactnumber" class="text-box" size="30">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-holder">
+                        <label for="input-orangetkt">Orange Case:</label>
+                        <input type="text" id="input-orangetkt" class="text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="input-status">Status:</label>
+                        <input type="text" id="input-status" class="text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="input-location">Location:</label>
+                        <input type="text" id="input-location" class="text-box" size="30">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-holder">
+                        <label for="input-customer">Customer:</label>
+                        <input type="text" id="input-customer" class="text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="input-address">Address:</label>
+                        <input type="text" id="input-address" class="text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="input-destemails">Carrier's Destination Email(s):</label>
+                        <input type="text" id="input-destemails" class="text-box" size="30">
+                    </div>
+                </div>
+                <div class="template-buttons-container">
+                    <button id="generate-templates" onclick="generateTemplates()">Generate Templates</button>
+                    <button id="clean-templates" onclick="cleanTemplates('text-box')">Clean Templates</button>
+                </div>
+                <div class="email-buttons-container">
+                    <button class="email-button" id='send-ptbr-email' onclick="sendEmail('ptbr')">Send Portuguese Email</button>
+                    <button class="email-button" id='send-esp-email' onclick="sendEmail('esp')">Send Spanish Email</button>
+                    <button class="email-button" id='send-eng-email' onclick="sendEmail('eng')">Send English Email</button>
+                </div>
             </div>
-            <div class="input-holder">
-                <label for="input-carrier">Carrier:</label>
-                <input type="text" id="input-carrier" class="text-box" size="30">
-            </div>
-            <div class="input-holder">
-                <label for="input-cctid">CCTID:</label>
-                <input type="text" id="input-cctid" class="text-box" size="30">
+
+            <!-- CARD DE TEMPLATES -->
+            <div class="results-card">
+                <div class="results-card-title"><h3>Results:</h3></div>
+                <div class="results-holder">
+                    <div class="text-area-label">
+                        <p>
+                            Description
+                            <button id="copy-ticket-description" onclick="copyToClipboard('ticket-description-text')">Click to Copy</button>
+                        </p>
+                    </div>
+                    <textarea name="ticket-description-area" id="ticket-description-text" class="text-box" cols="90" rows="2"></textarea>
+                </div>
+                <div class="results-holder">
+                    <div class="text-area-label">
+                        <p>
+                            First Telco Referral
+                            <button id="copy-first-telco" onclick="copyToClipboard('first-telco-text')">Click to Copy</button>
+                        </p>
+                    </div>
+                    <textarea name="first-telco-area" id="first-telco-text" class="text-box" cols="90" rows="10"></textarea>
+                </div>
+                <div class="results-holder">
+                    <div class="text-area-label">
+                        <p>
+                            Telco Status
+                            <button id="copy-telco-status" onclick="copyToClipboard('telco-status-text')">Click to Copy</button>
+                        </p>
+                    </div>
+                    <textarea name="telco-status-area" id="telco-status-text" class="text-box" cols="90" rows="10"></textarea>
+                </div>
+                <div class="results-holder">
+                    <div class="text-area-label">
+                        <p>
+                            Email Subject
+                            <button id="copy-email-subject" onclick="copyToClipboard('email-subject-text')">Click to Copy</button>
+                        </p>
+                    </div>
+                    <textarea name="email-subject-area" id="email-subject-text" class="text-box" cols="90" rows="3"></textarea>
+                </div>
+                <div class="results-holder">
+                    <div class="text-area-label">
+                        <p>
+                            Portuguese Email
+                            <button id="ptbr-email-subject" onclick="copyToClipboard('ptbr-email-text')">Click to Copy</button>
+                        </p>
+                    </div>
+                    <textarea name="ptbr-email-area" id="ptbr-email-text" class="text-box" cols="90" rows="16"></textarea>
+                </div>
+                <div class="results-holder">
+                    <div class="text-area-label">
+                        <p>
+                            Spanish Email
+                            <button id="esp-email-subject" onclick="copyToClipboard('esp-email-text')">Click to Copy</button>
+                        </p>
+                    </div>
+                    <textarea name="esp-email-area" id="esp-email-text" class="text-box" cols="90" rows="16"></textarea>
+                </div>
+                <div class="results-holder">
+                    <div class="text-area-label">
+                        <p>
+                            English Email
+                            <button id="eng-email-subject" onclick="copyToClipboard('eng-email-text')">Click to Copy</button>
+                        </p>
+                    </div>
+                    <textarea name="eng-email-area" id="eng-email-text" class="text-box" cols="90" rows="16"></textarea>
+                </div>
             </div>
         </div>
-        <div class="input-container">
-            <div class="input-holder">
-                <label for="input-carriertkt">Carrier's Ticket:</label>
-                <input type="text" id="input-carriertkt" class="text-box" size="30">
+
+        <!-- DIV DA TAB DE TEMPLATE DE TICKET OSP -->
+        <div id="osp-card" class="card" style="display: none;">
+
+            <!-- CARD DE INPUTS DO TEMPLATE DE TICKET OSP -->
+            <div class="input-card">
+                <div id="card-title"><h3>OSP Template Generator</h3></div>
+                <div class="input-container">
+                    <div class="input-holder">
+                        <label for="osp-service-type">Service Type:</label>
+                        <input type="text" id="osp-service-type" class="osp-text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="osp-cctid">CCTID:</label>
+                        <input type="text" id="osp-cctid" class="osp-text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="osp-obs-pe">OBS PE:</label>
+                        <input type="text" id="osp-obs-pe" class="osp-text-box" size="30">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-holder">
+                        <label for="osp-nvlan">NVLAN:</label>
+                        <input type="text" id="osp-nvlan" class="osp-text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="osp-circuit-speed">Circuit Speed:</label>
+                        <input type="text" id="osp-circuit-speed" class="osp-text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="osp-failure-time">Time of the failure:</label>
+                        <input type="text" id="osp-failure-time" class="osp-text-box" size="30">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-holder">
+                        <label for="osp-status">Status:</label>
+                        <input type="text" id="osp-status" class="osp-text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="osp-address">Address:</label>
+                        <input type="text" id="osp-address" class="osp-text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="osp-customer">Customer:</label>
+                        <input type="text" id="osp-customer" class="osp-text-box" size="30">
+                    </div>
+                </div>
+                <div class="input-container">
+                    <div class="input-holder">
+                        <label for="osp-lcon">LCON:</label>
+                        <input type="text" id="osp-lcon" class="osp-text-box" size="30">
+                    </div>
+                    <div class="input-holder">
+                        <label for="osp-obs-ticket">OBS Ticket:</label>
+                        <input type="text" id="osp-obs-ticket" class="osp-text-box" size="30">
+                    </div>
+                </div>
+                <div class="template-buttons-container">
+                    <button id="osp-generate-templates" onclick="generateOSPTemplate()">Generate Templates</button>
+                    <button id="osp-clean-templates" onclick="cleanTemplates('osp-text-box')">Clean Templates</button>
+                </div>
             </div>
-            <div class="input-holder">
-                <label for="input-contactname">Contact Name:</label>
-                <input type="text" id="input-contactname" class="text-box" size="30">
+
+            <!-- CARD DE RESULTADO DO TEMPLATE DE TICKET OSP -->
+            <div class="results-card">
+                <div class="results-card-title"><h3>Results:</h3></div>
+                <div class="results-holder">
+                    <div class="text-area-label">
+                        <p>
+                            OSP Template:
+                            <button id="copy-osp-template" onclick="copyToClipboard('osp-template-text')"> Click to Copy</button>
+                        </p>
+                        
+                    </div>
+                    <textarea name="osp-template-area" id="osp-template-text" class="osp-text-box" cols="90" rows="12"></textarea>
+                </div>
             </div>
-            <div class="input-holder">
-                <label for="input-contactnumber">Contact Number:</label>
-                <input type="text" id="input-contactnumber" class="text-box" size="30">
-            </div>
-        </div>
-        <div class="input-container">
-            <div class="input-holder">
-                <label for="input-orangetkt">Orange Case:</label>
-                <input type="text" id="input-orangetkt" class="text-box" size="30">
-            </div>
-            <div class="input-holder">
-                <label for="input-status">Status:</label>
-                <input type="text" id="input-status" class="text-box" size="30">
-            </div>
-            <div class="input-holder">
-                <label for="input-location">Location:</label>
-                <input type="text" id="input-location" class="text-box" size="30">
-            </div>
-        </div>
-        <div class="input-container">
-            <div class="input-holder">
-                <label for="input-customer">Customer:</label>
-                <input type="text" id="input-customer" class="text-box" size="30">
-            </div>
-            <div class="input-holder">
-                <label for="input-address">Address:</label>
-                <input type="text" id="input-address" class="text-box" size="30">
-            </div>
-            <div class="input-holder">
-                <label for="input-destemails">Carrier's Destination Email(s):</label>
-                <input type="text" id="input-destemails" class="text-box" size="30">
-            </div>
-        </div>
-        <div class="template-buttons-container">
-            <button id="generate-templates" onclick="generateTemplates()">Generate Templates</button>
-            <button id="clean-templates" onclick="cleanTemplates()">Clean Templates</button>
-        </div>
-        <div class="email-buttons-container">
-            <button class="email-button" id='send-ptbr-email' onclick="sendEmail('ptbr')">Send Portuguese Email</button>
-            <button class="email-button" id='send-esp-email' onclick="sendEmail('esp')">Send Spanish Email</button>
-            <button class="email-button" id='send-eng-email' onclick="sendEmail('eng')">Send English Email</button>
         </div>
     </div>
 
-    <!-- CARD DE TEMPLATES -->
-    <div class="results-card">
-        <div class="results-card-title"><h3>Results:</h3></div>
-        <div class="results-holder">
-            <div class="text-area-label">
-                <p>
-                    Description
-                    <button id="copy-ticket-description" onclick="copyToClipboard('ticket-description-text')"> Click to Copy</button>
-                </p>
-            </div>
-            <textarea name="ticket-description-area" id="ticket-description-text" class="text-box" cols="90" rows="2"></textarea>
-        </div>
-        <div class="results-holder">
-            <div class="text-area-label">
-                <p>
-                    First Telco Referral
-                    <button id="copy-first-telco" onclick="copyToClipboard('first-telco-text')"> Click to Copy</button>
-                </p>
-            </div>
-            <textarea name="first-telco-area" id="first-telco-text" class="text-box" cols="90" rows="10"></textarea>
-        </div>
-        <div class="results-holder">
-            <div class="text-area-label">
-                <p>
-                    Telco Status
-                    <button id="copy-telco-status" onclick="copyToClipboard('telco-status-text')"> Click to Copy</button>
-                </p>
-            </div>
-            <textarea name="telco-status-area" id="telco-status-text" class="text-box" cols="90" rows="10"></textarea>
-        </div>
-        <!--
-        <div class="results-holder">
-            <div class="osp-template-label">
-                <p>
-                    OSP Activation Template
-                    <button id="copy-osp-template" onclick="copyToClipboard('osp-template-text')"> Click to Copy</button>
-                </p>
-            </div>
-            <textarea name="osp-template-area" id="osp-template-text" class="text-box" cols="90"></textarea>
-        </div>
-        -->
-        <div class="results-holder">
-            <div class="text-area-label">
-                <p>
-                    Email Subject
-                    <button id="copy-email-subject" onclick="copyToClipboard('email-subject-text')"> Click to Copy</button>
-                </p>
-            </div>
-            <textarea name="email-subject-area" id="email-subject-text" class="text-box" cols="90" rows="3"></textarea>
-        </div>
-        <div class="results-holder">
-            <div class="text-area-label">
-                <p>
-                    Portuguese Email
-                    <button id="ptbr-email-subject" onclick="copyToClipboard('ptbr-email-text')"> Click to Copy</button>
-                </p>
-            </div>
-            <textarea name="ptbr-email-area" id="ptbr-email-text" class="text-box" cols="90" rows="16"></textarea>
-        </div>
-        <div class="results-holder">
-            <div class="text-area-label">
-                <p>
-                    Spanish Email
-                    <button id="esp-email-subject" onclick="copyToClipboard('esp-email-text')"> Click to Copy</button>
-                </p>
-            </div>
-            <textarea name="esp-email-area" id="esp-email-text" class="text-box" cols="90" rows="16"></textarea>
-        </div>
-        <div class="results-holder">
-            <div class="text-area-label">
-                <p>
-                    English Email
-                    <button id="eng-email-subject" onclick="copyToClipboard('eng-email-text')"> Click to Copy</button>
-                </p>
-            </div>
-            <textarea name="eng-email-area" id="eng-email-text" class="text-box" cols="90" rows="16"></textarea>
-        </div>
-    </div>
 </body>
 </html>
