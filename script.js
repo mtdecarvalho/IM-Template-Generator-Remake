@@ -291,7 +291,7 @@ envia essa string como parametro pra localizar a textarea pelo getElementById, s
 */
 
 function copyToClipboard(text) {
-    document.querySelector(`.${text}`).select()
+    document.querySelector(`#${text}`).select()
     document.execCommand('copy')
     document.getSelection().removeAllRanges()
 }
