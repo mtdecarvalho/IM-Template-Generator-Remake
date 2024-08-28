@@ -9,6 +9,20 @@ function switchCard (cardID) {
     for (let i = 0; i < cards.length; i++) {
         cards[i].style.display = 'none'
     }
+    if (cardID === 'osp-card') {
+        document.querySelector('#osp-cctid').value = document.querySelector('#input-cctid').value
+        document.querySelector('#osp-status').value = document.querySelector('#input-status').value
+        document.querySelector('#osp-address').value = document.querySelector('#input-address').value
+        document.querySelector('#osp-customer').value = document.querySelector('#input-customer').value
+        document.querySelector('#osp-orangetkt').value = document.querySelector('#input-orangetkt').value
+    }
+    /*
+    cctid
+    status
+    address
+    customer
+    obs ticket
+    */
     document.querySelector(`#${cardID.toString()}`).style.display = 'block'
 }
 
@@ -240,7 +254,7 @@ function generateOSPTemplate() {
     let address = document.querySelector('#osp-address').value
     let customer = document.querySelector('#osp-customer').value
     let lcon = document.querySelector('#osp-lcon').value
-    let obsTicket = document.querySelector('#osp-obs-ticket').value
+    let obsTicket = document.querySelector('#osp-orangetkt').value
 
     document.querySelector('#osp-template-text').value = `Tipo de servicio: ${serviceType}\n` +
     `Número de circuito: ${cctid}\n` +

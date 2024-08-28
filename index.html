@@ -97,7 +97,7 @@
                     <div class="text-area-label">
                         <p>
                             Description
-                            <button id="copy-ticket-description" onclick="copyToClipboard('ticket-description-text')">Click to Copy</button>
+                            <button class="results-button" id="copy-ticket-description" onclick="copyToClipboard('ticket-description-text')">Click to Copy</button>
                         </p>
                     </div>
                     <textarea name="ticket-description-area" id="ticket-description-text" class="text-box" cols="90" rows="2"></textarea>
@@ -106,7 +106,7 @@
                     <div class="text-area-label">
                         <p>
                             First Telco Referral
-                            <button id="copy-first-telco" onclick="copyToClipboard('first-telco-text')">Click to Copy</button>
+                            <button class="results-button" id="copy-first-telco" onclick="copyToClipboard('first-telco-text')">Click to Copy</button>
                         </p>
                     </div>
                     <textarea name="first-telco-area" id="first-telco-text" class="text-box" cols="90" rows="10"></textarea>
@@ -115,7 +115,7 @@
                     <div class="text-area-label">
                         <p>
                             Telco Status
-                            <button id="copy-telco-status" onclick="copyToClipboard('telco-status-text')">Click to Copy</button>
+                            <button class="results-button" id="copy-telco-status" onclick="copyToClipboard('telco-status-text')">Click to Copy</button>
                         </p>
                     </div>
                     <textarea name="telco-status-area" id="telco-status-text" class="text-box" cols="90" rows="10"></textarea>
@@ -124,7 +124,7 @@
                     <div class="text-area-label">
                         <p>
                             Email Subject
-                            <button id="copy-email-subject" onclick="copyToClipboard('email-subject-text')">Click to Copy</button>
+                            <button class="results-button" id="copy-email-subject" onclick="copyToClipboard('email-subject-text')">Click to Copy</button>
                         </p>
                     </div>
                     <textarea name="email-subject-area" id="email-subject-text" class="text-box" cols="90" rows="3"></textarea>
@@ -133,7 +133,7 @@
                     <div class="text-area-label">
                         <p>
                             Portuguese Email
-                            <button id="ptbr-email-subject" onclick="copyToClipboard('ptbr-email-text')">Click to Copy</button>
+                            <button class="results-button" id="ptbr-email-subject" onclick="copyToClipboard('ptbr-email-text')">Click to Copy</button>
                         </p>
                     </div>
                     <textarea name="ptbr-email-area" id="ptbr-email-text" class="text-box" cols="90" rows="16"></textarea>
@@ -142,7 +142,7 @@
                     <div class="text-area-label">
                         <p>
                             Spanish Email
-                            <button id="esp-email-subject" onclick="copyToClipboard('esp-email-text')">Click to Copy</button>
+                            <button class="results-button" id="esp-email-subject" onclick="copyToClipboard('esp-email-text')">Click to Copy</button>
                         </p>
                     </div>
                     <textarea name="esp-email-area" id="esp-email-text" class="text-box" cols="90" rows="16"></textarea>
@@ -151,7 +151,7 @@
                     <div class="text-area-label">
                         <p>
                             English Email
-                            <button id="eng-email-subject" onclick="copyToClipboard('eng-email-text')">Click to Copy</button>
+                            <button class="results-button" id="eng-email-subject" onclick="copyToClipboard('eng-email-text')">Click to Copy</button>
                         </p>
                     </div>
                     <textarea name="eng-email-area" id="eng-email-text" class="text-box" cols="90" rows="16"></textarea>
@@ -213,8 +213,8 @@
                         <input type="text" id="osp-lcon" class="osp-text-box" size="30">
                     </div>
                     <div class="input-holder">
-                        <label for="osp-obs-ticket">OBS Ticket:</label>
-                        <input type="text" id="osp-obs-ticket" class="osp-text-box" size="30">
+                        <label for="osp-orangetkt">OBS Ticket:</label>
+                        <input type="text" id="osp-orangetkt" class="osp-text-box" size="30">
                     </div>
                 </div>
                 <div class="template-buttons-container">
@@ -230,7 +230,7 @@
                     <div class="text-area-label">
                         <p>
                             OSP Template:
-                            <button id="copy-osp-template" onclick="copyToClipboard('osp-template-text')"> Click to Copy</button>
+                            <button class="results-button" id="copy-osp-template" onclick="copyToClipboard('osp-template-text')"> Click to Copy</button>
                         </p>
                         
                     </div>
@@ -238,6 +238,32 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            // Adiciona a troca de cor ao colocar o mouse em cima e tirar o mouse dos botões
+            let bodyButtons = document.querySelectorAll('body button')
+            bodyButtons.forEach(e => {
+                e.addEventListener('mouseenter', () => {
+                    e.style.background = 'black'
+                    e.style.color = 'white'
+                })
+                e.addEventListener('mouseout', () => {
+                    e.style.background = 'orange'
+                    e.style.color = 'black'
+                })
+            });
+
+            let resultsButtons = document.querySelectorAll('.results-button')
+            resultsButtons.forEach(e => {
+                let oldText = e.innerHTML
+                e.addEventListener('click', () => {
+                    e.innerHTML = 'Copied!'
+                    setTimeout(() => {
+                        e.innerHTML = oldText
+                    }, 1000)
+                })
+            })
+        </script>
     </div>
 
 </body>
