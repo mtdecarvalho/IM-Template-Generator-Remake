@@ -1,9 +1,15 @@
+/*
+Zera todos os estilos da página
+*/
 *{
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
 }
 
+/*
+Config inicial do body
+*/
 body {
     background-color: white;
     font-family: "Noto Sans Hanunoo", sans-serif;
@@ -13,13 +19,17 @@ body {
 
 body button {
     border-color: black;
-    background-color: orange;
+    background-color: rgb(255, 184, 52);
     color: black;
     border-radius: 5px;
+    cursor: pointer;
 }
 
+/*
+Container dos cards de input e resultado
+*/
+
 #card-container {
-    background-color: rgb(31, 31, 31);
     margin-top: 10px;
     margin-right: 20px;
     margin-left: 20px;
@@ -32,10 +42,21 @@ body button {
     margin-left: 20px;
 }
 
+#card-tab-buttons a, a:link, a:visited, a:hover, a:active, a:visited {
+    float: right;
+    margin-right: 25px;
+    color: white;
+    text-decoration: none;
+}
+
 .card-buttons {
     margin-right: 10px;
     padding: 5px;
 }
+
+/*
+Card de inputs
+*/
 
 .input-card {
     background-color: orange;
@@ -65,6 +86,15 @@ body button {
     margin-right: 20px;
 }
 
+.input-card button {
+    padding: 5px;
+    font-size: 14px;
+}
+
+/*
+Botões generate template e clean templates
+*/
+
 .template-buttons-container {
     display: flex;
     justify-content: space-between;
@@ -72,20 +102,22 @@ body button {
     margin-bottom: 10px;
 }
 
+/*
+Botões de geração de emails
+*/
 .email-buttons-container {
     display: flex;
     justify-content: start;
     margin-top: 10px;
 }
 
-.input-card button {
-    padding: 5px;
-    font-size: 14px;
-}
-
 .email-button {
     margin-right: 20px;
 }
+
+/*
+Card de resultados
+*/
 
 .results-card {
     background-color: orange;

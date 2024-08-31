@@ -9,6 +9,11 @@ function switchCard (cardID) {
     for (let i = 0; i < cards.length; i++) {
         cards[i].style.display = 'none'
     }
+    /*
+    Esse if serve para preencher os campos equivalentes no card de tickets OSP, que já foram
+    preenchidos no card de templates de email. 
+    Sempre que o botão para mostrar o card dos tickets OSP é clicado, esse if é acionado.
+    */
     if (cardID === 'osp-card') {
         document.querySelector('#osp-cctid').value = document.querySelector('#input-cctid').value
         document.querySelector('#osp-status').value = document.querySelector('#input-status').value
@@ -16,13 +21,6 @@ function switchCard (cardID) {
         document.querySelector('#osp-customer').value = document.querySelector('#input-customer').value
         document.querySelector('#osp-orangetkt').value = document.querySelector('#input-orangetkt').value
     }
-    /*
-    cctid
-    status
-    address
-    customer
-    obs ticket
-    */
     document.querySelector(`#${cardID.toString()}`).style.display = 'block'
 }
 
@@ -129,6 +127,11 @@ function generateEmailStatusEsp(status) {
     else                                            return 'fue afectado'
 }
 
+/*
+Essa funções fazem a tradução dos status para as linguagens que utilizamos no dia-a-dia.
+Essas funções retornam uma string que é inserida no campo de "Descrição da falha" no corpo do email.
+*/
+
 function translateStatusPtbr(status) {
     if (status.toLowerCase() === 'down')                return 'Caído'
     else if (status.toLowerCase() === 'flap')           return 'Intermitência'
@@ -152,6 +155,10 @@ function translateStatusEsp(status) {
     else if (status.toLowerCase() === 'rfo')            return 'Razón de la falla (RFO)'
     else                                                return status
 }
+
+/*
+Essa função é utilizada para inserir os campos de downtime e uptime no corpo de texto, quando for abrir um ticket de RFO.
+*/
 
 function addRFODowntimeUptime(status, lang) {
     if (lang === 'ptbr')        return status.toLowerCase() === 'rfo' ? 'Horário de queda: \nHorário de normalização: \n\n' : '\n'
@@ -205,7 +212,8 @@ function generateEmailBodyEsp(cctid, address, customer, status, orangeTkt) {
 }
 
 /*
-Essa é a função principal do caso, pois é ela que começa toda a geração de templates.
+Essa é a função responsável por gerar os templates no card de emails, pois é ela que começa toda a geração de templates.
+Aqui ocorre toda a coleta dos inputs, a geração das strings de templates, e a inserção nos campos no card de resultado.
 */
 
 function generateTemplates() {
@@ -240,7 +248,7 @@ function generateTemplates() {
 }
 
 /*
-Essa é a função responsável por gerar os templates OSP e é chamada ao apertar no botão correspondente.
+Essa é a função responsável por gerar o template para abertura de tickets OSP.
 */
 
 function generateOSPTemplate() {
