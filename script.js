@@ -106,25 +106,26 @@ Por ex, se o campo de status estiver como "down", a função anônima vai retorn
 Se o status não for down, flap ou packet loss, vai retornar "foi afetado", já que na maioria dos casos vai ser um RFO.
 */
 
-function generateEmailStatusPtbr(status) {
-    if (status.toLowerCase() == 'down')             return 'se encontra caído'
-    else if (status.toLowerCase() == 'flap')        return 'se encontra intermitente'
-    else if (status.toLowerCase() == 'packet loss') return 'está apresentando perda de pacotes'
-    else                                            return 'foi afetado'
-}
+function generateEmailStatus(lang, status) {
+    switch (lang) {
+        case "ptbr":
+            if (status.toLowerCase() == 'down')             return 'se encontra caído'
+            else if (status.toLowerCase() == 'flap')        return 'se encontra intermitente'
+            else if (status.toLowerCase() == 'packet loss') return 'está apresentando perda de pacotes'
+            else                                            return 'foi afetado'
 
-function generateEmailStatusEng(status) {
-    if (status.toLowerCase() == 'down')             return 'is currently down'
-    else if (status.toLowerCase() == 'flap')        return 'is currently intermittent'
-    else if (status.toLowerCase() == 'packet loss') return 'is currently presenting packet loss'
-    else                                            return 'was affected'
-}
+        case "eng":
+            if (status.toLowerCase() == 'down')             return 'is currently down'
+            else if (status.toLowerCase() == 'flap')        return 'is currently intermittent'
+            else if (status.toLowerCase() == 'packet loss') return 'is currently presenting packet loss'
+            else                                            return 'was affected'
 
-function generateEmailStatusEsp(status) {
-    if (status.toLowerCase() == 'down')             return 'se encuentra caído'
-    else if (status.toLowerCase() == 'flap')        return 'se encuentra intermitente'
-    else if (status.toLowerCase() == 'packet loss') return 'está sufriendo pérdida de paquetes'
-    else                                            return 'fue afectado'
+        case "esp":
+            if (status.toLowerCase() == 'down')             return 'se encuentra caído'
+            else if (status.toLowerCase() == 'flap')        return 'se encuentra intermitente'
+            else if (status.toLowerCase() == 'packet loss') return 'está sufriendo pérdida de paquetes'
+            else                                            return 'fue afectado'
+    }
 }
 
 /*
@@ -132,28 +133,29 @@ Essa funções fazem a tradução dos status para as linguagens que utilizamos n
 Essas funções retornam uma string que é inserida no campo de "Descrição da falha" no corpo do email.
 */
 
-function translateStatusPtbr(status) {
-    if (status.toLowerCase() === 'down')                return 'Caído'
-    else if (status.toLowerCase() === 'flap')           return 'Intermitência'
-    else if (status.toLowerCase() === 'packet loss')    return 'Perda de pacotes'
-    else if (status.toLowerCase() === 'rfo')            return 'Razão da falha (RFO)'
-    else                                                return status
-}
+function translateStatus(lang, status) {
+    switch (lang) {
+        case "ptbr":
+            if (status.toLowerCase() === 'down')                return 'Caído'
+            else if (status.toLowerCase() === 'flap')           return 'Intermitência'
+            else if (status.toLowerCase() === 'packet loss')    return 'Perda de pacotes'
+            else if (status.toLowerCase() === 'rfo')            return 'Razão da falha (RFO)'
+            else                                                return status
 
-function translateStatusEng(status) {
-    if (status.toLowerCase() === 'down')                return 'Down'
-    else if (status.toLowerCase() === 'flap')           return 'Intermittency'
-    else if (status.toLowerCase() === 'packet loss')    return 'Packet loss'
-    else if (status.toLowerCase() === 'rfo')            return 'Reason for Outage (RFO)'
-    else                                                return status
-}
+        case "eng":
+            if (status.toLowerCase() === 'down')                return 'Down'
+            else if (status.toLowerCase() === 'flap')           return 'Intermittency'
+            else if (status.toLowerCase() === 'packet loss')    return 'Packet loss'
+            else if (status.toLowerCase() === 'rfo')            return 'Reason for Outage (RFO)'
+            else                                                return status
 
-function translateStatusEsp(status) {
-    if (status.toLowerCase() === 'down')                return 'Caído'
-    else if (status.toLowerCase() === 'flap')           return 'Intermitencia'
-    else if (status.toLowerCase() === 'packet loss')    return 'Pérdida de paquetes'
-    else if (status.toLowerCase() === 'rfo')            return 'Razón de la falla (RFO)'
-    else                                                return status
+        case "esp":
+            if (status.toLowerCase() === 'down')                return 'Caído'
+            else if (status.toLowerCase() === 'flap')           return 'Intermitencia'
+            else if (status.toLowerCase() === 'packet loss')    return 'Pérdida de paquetes'
+            else if (status.toLowerCase() === 'rfo')            return 'Razón de la falla (RFO)'
+            else                                                return status
+    }
 }
 
 /*
@@ -171,44 +173,44 @@ As funções abaixo são usadas para gerar o body dos emails em todas as língua
 As variáveis possuem o mesmo nome das variáveis localizadas na função generateTemplates(), que age como a principal função desse script.
 */
 
-function generateEmailBodyPtbr(cctid, address, customer, status, orangeTkt) {
-    return  `Olá equipe,\n\n` +
-            `Necessito gerar um ticket para um circuito que ${generateEmailStatusPtbr(status)}. Confiram abaixo os detalhes do circuito:\n\n` +
-            `CCTID: ${cctid}\n` +
-            `Endereço: ${address}\n` +
-            `Cliente: ${customer}\n` +
-            `Descrição da falha: ${translateStatusPtbr(status)}\n` +
-            `Ticket Orange: ${orangeTkt}\n` +
-            addRFODowntimeUptime(status, 'ptbr') +
-            `Assim que possuirem alguma atualização sobre este caso, por favor nos informem.\n\n` +
+function generateEmailBody(lang, cctid, address, customer, status, orangeTkt) {
+    switch (lang) {
+        case "ptbr":
+            return  `Olá equipe,\n\n` +
+                    `Necessito gerar um ticket para um circuito que ${generateEmailStatus("ptbr", status)}. Confiram abaixo os detalhes do circuito:\n\n` +
+                    `CCTID: ${cctid}\n` +
+                    `Endereço: ${address}\n` +
+                    `Cliente: ${customer}\n` +
+                    `Descrição da falha: ${translateStatus('ptbr', status)}\n` +
+                    `Ticket Orange: ${orangeTkt}\n` +
+                    addRFODowntimeUptime(status, 'ptbr') +
+                    `Assim que possuirem alguma atualização sobre este caso, por favor nos informem.\n\n` +
+                    `Agradeço desde já.\n`
 
-            `Agradeço desde já.\n`
-}
-
-function generateEmailBodyEng(cctid, address, customer, status, orangeTkt) {
-    return  `Hello team,\n\n` +
-            `I need to generate a ticket for a circuit that ${generateEmailStatusEng(status)}. Please check below the details of the circuit:\n\n` +
-            `CCTID: ${cctid}\n` +
-            `Address: ${address}\n` +
-            `Customer: ${customer}\n` +
-            `Failure description: ${translateStatusEng(status)}\n` +
-            `Orange Ticket: ${orangeTkt}\n` + 
-            addRFODowntimeUptime(status, 'eng') +
-            `As soon as you have any news on this case, please let us know.\n\n` +
-            `Thanks in advance.\n`
-}
-
-function generateEmailBodyEsp(cctid, address, customer, status, orangeTkt) {
-    return  `Hola estimados,\n\n` +
-            `Necesitamos generar un ticket para un circuito que ${generateEmailStatusEsp(status)}. Sigue abajo los detalles del circuito:\n\n` +
-            `CCTID: ${cctid}\n` +
-            `Dirección: ${address}\n` +
-            `Cliente: ${customer}\n` +
-            `Descripción de la falla: ${translateStatusEsp(status)}\n` +
-            `Orange Ticket: ${orangeTkt}\n` + 
-            addRFODowntimeUptime(status, 'esp') +
-            `Una vez que tengan alguna actualización para este tema, por favor, háganos saber.\n\n` +
-            `Gracias de antemano.\n`
+        case "eng":
+            return  `Hello team,\n\n` +
+                    `I need to generate a ticket for a circuit that ${generateEmailStatus("eng", status)}. Please check below the details of the circuit:\n\n` +
+                    `CCTID: ${cctid}\n` +
+                    `Address: ${address}\n` +
+                    `Customer: ${customer}\n` +
+                    `Failure description: ${translateStatus('eng', status)}\n` +
+                    `Orange Ticket: ${orangeTkt}\n` + 
+                    addRFODowntimeUptime(status, 'eng') +
+                    `As soon as you have any news on this case, please let us know.\n\n` +
+                    `Thanks in advance.\n`
+        
+        case "esp":
+            return  `Hola estimados,\n\n` +
+                    `Necesitamos generar un ticket para un circuito que ${generateEmailStatus("esp", status)}. Sigue abajo los detalles del circuito:\n\n` +
+                    `CCTID: ${cctid}\n` +
+                    `Dirección: ${address}\n` +
+                    `Cliente: ${customer}\n` +
+                    `Descripción de la falla: ${translateStatus('esp', status)}\n` +
+                    `Orange Ticket: ${orangeTkt}\n` + 
+                    addRFODowntimeUptime(status, 'esp') +
+                    `Una vez que tengan alguna actualización para este tema, por favor, háganos saber.\n\n` +
+                    `Gracias de antemano.\n`
+    }
 }
 
 /*
@@ -234,9 +236,9 @@ function generateTemplates() {
     let firstTelco = generateFirstTelco(carrier, contactName, contactNumber, router, cctid, carrierTkt)
     let telcoStatus = generateTelcoStatus(carrier, contactName, contactNumber, router, cctid, carrierTkt)
     let emailSubject = generateEmailSubject(orangeTkt, router, status, location, carrier, carrierTkt, cctid, customer)
-    let brEmail = generateEmailBodyPtbr(cctid, address, customer, status, orangeTkt)
-    let espEmail = generateEmailBodyEsp(cctid, address, customer, status, orangeTkt)
-    let engEmail = generateEmailBodyEng(cctid, address, customer, status, orangeTkt)
+    let brEmail = generateEmailBody("ptbr", cctid, address, customer, status, orangeTkt)
+    let espEmail = generateEmailBody("esp", cctid, address, customer, status, orangeTkt)
+    let engEmail = generateEmailBody("eng", cctid, address, customer, status, orangeTkt)
 
     document.querySelector('#ticket-description-text').value = ticketDescription
     document.querySelector('#first-telco-text').value = firstTelco
@@ -275,6 +277,53 @@ function generateOSPTemplate() {
     `Cliente: ${customer}\n` +
     `Contacto: ${lcon}\n` +
     `OBS ticket: ${obsTicket}\n`
+}
+
+function generateEscalationOCEANETemplate(agentName, escalationContact, escalationLvl, router, cctid, carrierTkt) {
+    return  `Telco Escalation\n` +
+            `************\n` +
+            `Case Escalated by: ${agentName} @ IM Analyst\n` +
+            `Case Escalated to: ${escalationContact}\n` +
+            `Escalation Level: ${escalationLvl}\n` +
+            `Contact Reachable: YES\n` +
+            `Escalation Acknowledged: YES\n` +
+            `Router: ${router}\n` +
+            `CCT ID: ${cctid}\n` +
+            `Carrier Ticket: ${carrierTkt}\n` +
+            `Comments: Hello team,\n\n` +
+            `We've escalated the ${escalationLvl} level from carrier in order to get any new details about this case and their ongoing investigation.\n\n` +          
+            `Once we have more details about this case from their side, we will let you know immediately.\n`
+}
+
+function generateEscalationEmailSubject(escalationLvl, orangeTkt, router, status, location, carrier, carrierTkt, cctid, customer) {
+    return `ESCALATION LEVEL ${escalationLvl.toUpperCase()} | Orange Case: ${orangeTkt} | Router: ${router} | Status: ${status} | ` +
+    `Location: ${location} | Carrier: ${carrier} | Carrier Ticket: ${carrierTkt} | Circuit ID: ${cctid} | Customer: ${customer}\n`
+}
+
+function generateEscalationEmailBody(lang) {
+    return 'WIP'
+}
+
+/*
+Função principal usada para gerar os templates de escalation
+*/
+
+function generateEscalationTemplates() {
+    let agentName = document.querySelector('#escalation-agent-name').value
+    let escalationContact = document.querySelector('#escalation-contact-name').value
+    let escalationLvl = document.querySelector('#escalation-level').value
+    let router = document.querySelector('#escalation-router').value
+    let cctid = document.querySelector('#escalation-cctid').value
+    let carrierTkt = document.querySelector('#escalation-carrier-ticket').value
+    let carrier = document.querySelector('#escalation-carrier').value
+    let status = document.querySelector('#escalation-status').value
+    let orangeTkt = document.querySelector('#escalation-orange-ticket').value
+    let location = document.querySelector('#escalation-location').value
+    let customer = document.querySelector('#escalation-customer').value
+
+    document.querySelector('#escalation-oceane-text').value = generateEscalationOCEANETemplate(agentName, escalationContact, escalationLvl, router, cctid, carrierTkt)
+    document.querySelector('#escalation-subject-text').value = generateEscalationEmailSubject(escalationLvl, orangeTkt, router, status, location, carrier, carrierTkt, cctid, customer)
+    document.querySelector('#escalation-body-text').value = generateEscalationEmailBody()
 }
 
 /*
