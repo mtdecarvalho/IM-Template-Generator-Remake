@@ -279,53 +279,6 @@ function generateOSPTemplate() {
     `OBS ticket: ${obsTicket}\n`
 }
 
-function generateEscalationOCEANETemplate(agentName, escalationContact, escalationLvl, router, cctid, carrierTkt) {
-    return  `Telco Escalation\n` +
-            `************\n` +
-            `Case Escalated by: ${agentName} @ IM Analyst\n` +
-            `Case Escalated to: ${escalationContact}\n` +
-            `Escalation Level: ${escalationLvl}\n` +
-            `Contact Reachable: YES\n` +
-            `Escalation Acknowledged: YES\n` +
-            `Router: ${router}\n` +
-            `CCT ID: ${cctid}\n` +
-            `Carrier Ticket: ${carrierTkt}\n` +
-            `Comments: Hello team,\n\n` +
-            `We've escalated the ${escalationLvl} level from carrier in order to get any new details about this case and their ongoing investigation.\n\n` +          
-            `Once we have more details about this case from their side, we will let you know immediately.\n`
-}
-
-function generateEscalationEmailSubject(escalationLvl, orangeTkt, router, status, location, carrier, carrierTkt, cctid, customer) {
-    return `ESCALATION LEVEL ${escalationLvl.toUpperCase()} | Orange Case: ${orangeTkt} | Router: ${router} | Status: ${status} | ` +
-    `Location: ${location} | Carrier: ${carrier} | Carrier Ticket: ${carrierTkt} | Circuit ID: ${cctid} | Customer: ${customer}\n`
-}
-
-function generateEscalationEmailBody(lang) {
-    return 'WIP'
-}
-
-/*
-Função principal usada para gerar os templates de escalation
-*/
-
-function generateEscalationTemplates() {
-    let agentName = document.querySelector('#escalation-agent-name').value
-    let escalationContact = document.querySelector('#escalation-contact-name').value
-    let escalationLvl = document.querySelector('#escalation-level').value
-    let router = document.querySelector('#escalation-router').value
-    let cctid = document.querySelector('#escalation-cctid').value
-    let carrierTkt = document.querySelector('#escalation-carrier-ticket').value
-    let carrier = document.querySelector('#escalation-carrier').value
-    let status = document.querySelector('#escalation-status').value
-    let orangeTkt = document.querySelector('#escalation-orange-ticket').value
-    let location = document.querySelector('#escalation-location').value
-    let customer = document.querySelector('#escalation-customer').value
-
-    document.querySelector('#escalation-oceane-text').value = generateEscalationOCEANETemplate(agentName, escalationContact, escalationLvl, router, cctid, carrierTkt)
-    document.querySelector('#escalation-subject-text').value = generateEscalationEmailSubject(escalationLvl, orangeTkt, router, status, location, carrier, carrierTkt, cctid, customer)
-    document.querySelector('#escalation-body-text').value = generateEscalationEmailBody()
-}
-
 /*
 Essa função pega os emails de destino, o email subject, e o body que corresponde à linguagem informada como parametro.
 Depois, analisa se todos os valores existem (retorna true), e caso sim, gera um mailto: com os parametros informados.

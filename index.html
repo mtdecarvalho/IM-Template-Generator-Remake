@@ -16,7 +16,6 @@
         <div id="card-tab-buttons">
             <button id="email-ticket-tab-button" class="card-buttons" onclick="switchCard('email-ticket-card')">IM Template Generator Remake</button>
             <button id="osp-tab-button" class="card-buttons" onclick="switchCard('osp-card')">OSP Template Generator</button>
-            <button id="escalation-tab-button" class="card-buttons" onclick="switchCard('escalation-card')">Escalation Template Generator</button>
             <a href="https://github.com/mtdecarvalho">Made by Matheus de Carvalho</a>
         </div>
 
@@ -237,107 +236,6 @@
                         
                     </div>
                     <textarea id="osp-template-text" class="osp-text-box" cols="90" rows="12"></textarea>
-                </div>
-            </div>
-        </div>
-
-        <div id="escalation-card" class="card" style="display: none;">
-            <div class="input-card">
-                <div id="card-title"><h3>Escalation Template Generator</h3></div>
-                <div class="input-container">
-                    <div class="input-holder">
-                        <label for="escalation-agent-name">Your Name:</label>
-                        <input type="text" id="escalation-agent-name" class="escalation-text-box" size="30">
-                    </div>
-                    <div class="input-holder">
-                        <label for="escalation-contact-name">Escalation Contact:</label>
-                        <input type="text" id="escalation-contact-name" class="escalation-text-box" size="30">
-                    </div>
-                    <div class="input-holder">
-                        <label for="escalation-level">Escalation Level:</label>
-                        <select id="escalation-level">
-                                <option value="1st">1st</option>
-                                <option value="2nd">2nd</option>
-                                <option value="3rd">3rd</option>
-                                <option value="4th">4th</option>
-                                <option value="5th">5th</option>
-                                <option value="6th">6th</option>
-                                <option value="7th">7th</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="input-container">
-                    <div class="input-holder">
-                        <label for="escalation-router">Router:</label>
-                        <input type="text" id="escalation-router" class="escalation-text-box" size="30">
-                    </div>
-                    <div class="input-holder">
-                        <label for="escalation-cctid">CCTID:</label>
-                        <input type="text" id="escalation-cctid" class="escalation-text-box" size="30">
-                    </div>
-                    <div class="input-holder">
-                        <label for="escalation-carrier-ticket">Carrier's Ticket:</label>
-                        <input type="text" id="escalation-carrier-ticket" class="escalation-text-box" size="30">
-                    </div>
-                </div>
-                <div class="input-container">
-                    <div class="input-holder">
-                        <label for="escalation-carrier">Carrier:</label>
-                        <input type="text" id="escalation-carrier" class="escalation-text-box" size="30">
-                    </div>
-                    <div class="input-holder">
-                        <label for="escalation-status">Status:</label>
-                        <input type="text" id="escalation-status" class="escalation-text-box" size="30">
-                    </div>
-                    <div class="input-holder">
-                        <label for="escalation-orange-ticket">Orange Ticket:</label>
-                        <input type="text" id="escalation-orange-ticket" class="escalation-text-box" size="30">
-                    </div>
-                </div>
-                <div class="input-container">
-                    <div class="input-holder">
-                        <label for="escalation-location">Location:</label>
-                        <input type="text" id="escalation-location" class="escalation-text-box" size="30">
-                    </div>
-                    <div class="input-holder">
-                        <label for="escalation-customer">Customer:</label>
-                        <input type="text" id="escalation-customer" class="escalation-text-box" size="30">
-                    </div>
-                </div>
-                <div class="template-buttons-container">
-                    <button id="escalation-generate-templates" onclick="generateEscalationTemplates()">Generate Templates</button>
-                    <button id="escalation-clean-templates" onclick="cleanTemplates('escalation-text-box')">Clean Templates</button>
-                </div>
-            </div>
-            
-            <div class="results-card">
-                <div class="results-card-title"><h3>Results:</h3></div>
-                <div class="results-holder">
-                    <div class="text-area-label">
-                        <p>
-                            Escalation OCEANE Template:
-                            <button class="results-button" id="copy-escalation-template" onclick="copyToClipboard('escalation-oceane-text')"> Click to Copy</button>
-                        </p>
-                    </div>
-                    <textarea id="escalation-oceane-text" class="escalation-text-box" cols="90" rows="17"></textarea>
-                </div>
-                <div class="results-holder">
-                    <div class="text-area-label">
-                        <p>
-                            Escalation Email Subject:
-                            <button class="results-button" id="copy-escalation-template" onclick="copyToClipboard('escalation-subject-text')"> Click to Copy</button>
-                        </p>
-                    </div>
-                    <textarea id="escalation-subject-text" class="escalation-text-box" cols="90" rows="3"></textarea>
-                </div>
-                <div class="results-holder">
-                    <div class="text-area-label">
-                        <p>
-                            Escalation Email Template:
-                            <button class="results-button" id="copy-escalation-template" onclick="copyToClipboard('escalation-body-text')"> Click to Copy</button>
-                        </p>
-                    </div>
-                    <textarea id="escalation-body-text" class="escalation-text-box" cols="90" rows="12"></textarea>
                 </div>
             </div>
         </div>
