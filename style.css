@@ -156,7 +156,8 @@ Card de resultados
     margin-bottom: 5px;
 }
 
-.text-box, .osp-text-box, .escalation-text-box {
+.text-box, .osp-text-box, .escalation-text-box, .quote-text-box {
     font-family: "Noto Sans Hanunoo", sans-serif;
     border-radius: 5px;
+    font-size: 14px;
 }

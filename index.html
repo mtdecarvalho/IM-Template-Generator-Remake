@@ -16,6 +16,7 @@
         <div id="card-tab-buttons">
             <button id="email-ticket-tab-button" class="card-buttons" onclick="switchCard('email-ticket-card')">IM Template Generator Remake</button>
             <button id="osp-tab-button" class="card-buttons" onclick="switchCard('osp-card')">OSP Template Generator</button>
+            <button id="quote-tab-button" class="card-buttons" onclick="switchCard('quote-card')">Quote Generator</button>
             <a href="https://github.com/mtdecarvalho">Made by Matheus de Carvalho</a>
         </div>
 
@@ -236,6 +237,39 @@
                         
                     </div>
                     <textarea id="osp-template-text" class="osp-text-box" cols="90" rows="12"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <div id="quote-card" class="card" style="display: none;">
+
+            <!-- CARD DE INPUTS DO TEMPLATE DE QUOTES -->
+            <div class="input-card">
+                <div id="card-title"><h3>Quote Generator</h3></div>
+                <div class="input-container">
+                    <div class="input-holder">
+                        <label for="input-source">Text to be quoted:</label>
+                        <textarea id="input-source-text" class="quote-text-box" cols="90" rows="12"></textarea>
+                    </div>
+                </div>
+                <div class="template-buttons-container">
+                    <button id="quote-generate-templates" onclick="generateQuote()">Generate Templates</button>
+                    <button id="quote-clean-templates" onclick="cleanTemplates('quote-text-box')">Clean Templates</button>
+                </div>
+            </div>
+
+            <!-- CARD DE RESULTADO DO TEMPLATE DE TICKET OSP -->
+            <div class="results-card">
+                <div class="results-card-title"><h3>Results:</h3></div>
+                <div class="results-holder">
+                    <div class="text-area-label">
+                        <p>
+                            Quote:
+                            <button class="results-button" id="copy-quote-template" onclick="copyToClipboard('quote-template-text')"> Click to Copy</button>
+                        </p>
+                        
+                    </div>
+                    <textarea id="quote-template-text" class="quote-text-box" cols="90" rows="12"></textarea>
                 </div>
             </div>
         </div>
